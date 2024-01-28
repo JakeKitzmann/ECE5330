@@ -1,11 +1,25 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
 
+
+        String inputName;
+        String outputName;
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Input .txt: ");
+        inputName = scanner.nextLine();
+
+        System.out.println("Output .txt: ");
+        outputName = scanner.nextLine();
+
+
         // input init
-        FileReader input = new FileReader("HomeworkOne/src/input.txt");
+        FileReader input = new FileReader(inputName);
         BufferedReader reader = new BufferedReader(input);
 
         // read numbers to arraylist
@@ -26,7 +40,7 @@ public class Main {
 
 
         // output init
-        FileWriter output = new FileWriter("/Users/jacob_kitz/IdeaProjects/ECE5330/HomeworkOne/src/output.txt");
+        FileWriter output = new FileWriter(outputName);
         BufferedWriter writer = new BufferedWriter(output);
 
         // output

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class BinaryHeap {
 
-    ArrayList<Integer> heap;
+    private ArrayList<Integer> heap;
 
     // constructor -- creates binary heap with input Arraylist of integers
     public BinaryHeap(ArrayList<Integer> input){
@@ -17,7 +17,7 @@ public class BinaryHeap {
 
 
     // build a heap with integers stored in heap ArrayList
-    // left child is 2j, right child is 2j+1
+    // left child is 2 * idx, right child is (2 * idx) +1
     public void buildHeap(int idx) {
         int currentNode = heap.get(idx);
 
@@ -39,7 +39,6 @@ public class BinaryHeap {
                 idx++;
             }
 
-
             buildHeap(idx);
         }
         catch(IndexOutOfBoundsException e){}
@@ -54,6 +53,7 @@ public class BinaryHeap {
         return output;
     }
 
+    // call deleteMin and store root values as an arrayList -- return arrayList
     public ArrayList<Integer> outputAndClear(){
         ArrayList<Integer> output = new ArrayList<>();
 
@@ -65,9 +65,8 @@ public class BinaryHeap {
                 outputInt = this.deleteMin();
             }
         }
-        catch (IndexOutOfBoundsException e){
+        catch (IndexOutOfBoundsException e){}
 
-        }
         return output;
     }
 }
