@@ -5,21 +5,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-
-        String inputName;
-        String outputName;
-
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Input .txt: ");
-        inputName = scanner.nextLine();
-
-        System.out.println("Output .txt: ");
-        outputName = scanner.nextLine();
-
-
         // input init
-        FileReader input = new FileReader(inputName);
+        FileReader input = new FileReader("HomeworkOne/src/input.txt");
         BufferedReader reader = new BufferedReader(input);
 
         // read numbers to arraylist
@@ -40,7 +27,7 @@ public class Main {
 
 
         // output init
-        FileWriter output = new FileWriter(outputName);
+        FileWriter output = new FileWriter("HomeworkOne/src/output.txt");
         BufferedWriter writer = new BufferedWriter(output);
 
         // output
