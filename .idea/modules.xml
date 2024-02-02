@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/ECE5330.iml" filepath="$PROJECT_DIR$/.idea/ECE5330.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HomeworkOne/HomeworkOne.iml" filepath="$PROJECT_DIR$/HomeworkOne/HomeworkOne.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HomeworkOneLeafTest/HomeworkOneLeafTest.iml" filepath="$PROJECT_DIR$/HomeworkOneLeafTest/HomeworkOneLeafTest.iml" />
+    </modules>
+  </component>
+</project>
