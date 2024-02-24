@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/ECE5330.iml" filepath="$PROJECT_DIR$/.idea/ECE5330.iml" />
       <module fileurl="file://$PROJECT_DIR$/HomeworkOne/HomeworkOne.iml" filepath="$PROJECT_DIR$/HomeworkOne/HomeworkOne.iml" />
       <module fileurl="file://$PROJECT_DIR$/HomeworkOneLeafTest/HomeworkOneLeafTest.iml" filepath="$PROJECT_DIR$/HomeworkOneLeafTest/HomeworkOneLeafTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HomeworkThree/HomeworkThree.iml" filepath="$PROJECT_DIR$/HomeworkThree/HomeworkThree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HomeworkTwo/HomeworkTwo.iml" filepath="$PROJECT_DIR$/HomeworkTwo/HomeworkTwo.iml" />
     </modules>
   </component>
 </project>
