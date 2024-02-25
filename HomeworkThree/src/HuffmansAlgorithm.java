@@ -3,7 +3,7 @@ import java.util.*;
 
 public class HuffmansAlgorithm {
     private PriorityQueue<Node> queue;
-    ArrayList<String> output = new ArrayList<>();
+    ArrayList<String> output = new ArrayList<>(); // returns an array list with each translation as an index
 
 
     public ArrayList<String> huffmansAlgorithm(int size, char[] characters, int[] frequencies){
@@ -50,20 +50,24 @@ public class HuffmansAlgorithm {
                 w.frequency = y.frequency + z.frequency;
                 w.character = '.'; // filler char
 
+                // assign y and z as the chilren of w to construct the tree
                 w.leftChild = y;
                 w.rightChild = z;
                 root = w;
 
+                // add w to the queue to continue along the full queue
                 queue.add(w);
             }
+
+            // recursively assign down the binary tree
             assignCode(root, "");
         }
 
-        // recursively assign code values from here
 
-        return output;
+        return output; // return the array list with each translation
     }
 
+    // recursive method to work down the tree created by the main method (huffmansAlgorithm)
     public void assignCode(Node root, String string){
 
         // recursive base case
@@ -72,10 +76,11 @@ public class HuffmansAlgorithm {
             return;
         }
 
-        assignCode(root.leftChild, string + "0");
-        assignCode(root.rightChild, string + "1");
+        assignCode(root.leftChild, string + "0"); // add 0 to left child
+        assignCode(root.rightChild, string + "1"); // add 1 to right child
     }
 
+    // data structure for nodes of the tree created
     private class Node{
         int frequency;
         char character;
@@ -84,6 +89,7 @@ public class HuffmansAlgorithm {
         Node rightChild;
     }
 
+    // used in the priorityQueue object to determine how to order the nodes by lowest frequency
     private class FrequencyComparison implements Comparator<Node>{
 
         @Override
