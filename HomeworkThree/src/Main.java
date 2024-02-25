@@ -35,9 +35,6 @@ public class Main {
             char character = components[0].charAt(components[0].length()-1);
             int frequency = Integer.parseInt(components[1].substring(0,components[1].length() - 1));
 
-            System.out.print(character);
-            System.out.println("  " + frequency);
-
             characters[i] = character;
             frequencies[i] = frequency;
 
