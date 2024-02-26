@@ -1,29 +1,32 @@
+import java.io.*;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
-        // get number of letters from user and create array of size
+        // get input and output files from user
         System.out.println("---------");
-        System.out.println("Input number of values to encode: ");
-        final int SIZE = scanner.nextInt();
-        scanner.nextLine(); // consume buffer to maintain next input
-        System.out.println();
+        System.out.println("Input file path for values to encode:");
+
+        String inputFilePath = scanner.nextLine();
+        BufferedReader reader = new BufferedReader(new FileReader(inputFilePath));
+
+        System.out.println("---------");
+        System.out.println("Input file path for output");
+
+        String outputFilePath = scanner.nextLine();
+        BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath));
+
+        // read size from file
+        final int SIZE = Integer.parseInt(reader.readLine());
 
         // array to store [character,frequency] sets
         String[] inputValues = new String[SIZE];
 
-        for(int i = 0; i < inputValues.length; i++){
-            System.out.println("--------------");
-            System.out.println("Enter: [letter,frequency]");
-            inputValues[i] = scanner.nextLine();
-        }
-
-        // print out values for user clarity
-        System.out.println("Current values: ");
-        for(String string : inputValues){
-            System.out.println(string);
+        for(int i = 0; i < SIZE; i++){
+            inputValues[i] = reader.readLine();
         }
 
         // arrays to store characters and frequencies
@@ -50,10 +53,12 @@ public class Main {
         ArrayList<String> dictionary = huffmansAlgorithm.huffmansAlgorithm(SIZE, characters, frequencies);
 
         // output
-        System.out.println("-----------------------");
-        System.out.println("--Encoding Dictionary--");
+        System.out.println("---------");
+        System.out.println("Success -- Outputting to " + outputFilePath);
         for(String string : dictionary){
-            System.out.println(string);
+            writer.write(string);
+            writer.newLine();
+            writer.flush();
         }
     }
 }
