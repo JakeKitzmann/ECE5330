@@ -6,45 +6,21 @@ Goal:
 
 To Run:
     The computation is handled by the HuffmansAlgorithm class. Run the Main runnable class to use the program.
-    First you should enter the amount of values, then the data should be input as [character,frequency] one line at a
-    time. The output will print the characters and their encoded values to the console.
+    You should only have to input the filepath for the input values, and the filepath for the output values.
 
-    i.e.
+Input text file:
+    The input text file should be formatted with the amount of terms first, then each term on its own line. The format
+    for the terms should be [term,frequency]
 
-    Input number of values to encode:
-    6
+    example:
 
-    --------------
-    Enter: [letter,frequency]
-    [a,12]
-    --------------
-    Enter: [letter,frequency]
-    [b,42]
-    --------------
-    Enter: [letter,frequency]
-    [c,123]
-    --------------
-    Enter: [letter,frequency]
-    [d,54]
-    --------------
-    Enter: [letter,frequency]
-    [e,32]
-    --------------
-    Enter: [letter,frequency]
-    [f,45]
+        7
+        [a,12]
+        [b,34]
+        [c,87]
+        [q,456]
+        [g,812]
+        [p,43]
+        [o,2]
 
-    Current values:
-    [a,12]
-    [b,42]
-    [c,123]
-    [d,54]
-    [e,32]
-    [f,45]
-
-    --Encoding Dictionary--
-    c -- 0
-    b -- 100
-    a -- 1010
-    e -- 1011
-    f -- 110
-    d -- 111
+    This file has 7 values, each of which is a tuple with a character and its frequency.
