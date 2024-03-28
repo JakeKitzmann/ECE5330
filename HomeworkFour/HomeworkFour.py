@@ -1,33 +1,36 @@
+
 # Main program for ECE:5330 homework four, Jake Kitzmann
 
 class BellmanFord:
     def __init__(self, graph):
         self.graph = graph
 
-    def shortestPaths(self, source, sink):
-        
-        V = self.graph.V
-        E = self.graph.E
-        edges = self.graph.edges
-
-        M = []
-        successor = []
-
-        for i in range(0, V):
-            M.append(float('inf'))
-            successor.append('phi')
-
+    def shortestPaths(self, sink, source):
+        M = [float("Inf")] * self.graph.V
         M[sink - 1] = 0
 
-        for i in range(1, V - 1):
-            for w in range(1, V):
-                updated = False
-                if()
+        paths = [None] * self.graph.V
+        paths[sink - 1] = [sink]
 
+        print('Running Shortest Paths...')
+        # shortest paths for each node stored in M
+        for _ in range(1, self.graph.V - 1):
+            for edge in self.graph.edges:
+                if M[edge.head - 1] != float("Inf") and M[edge.head - 1] + edge.weight < M[edge.tail - 1]:
+                    M[edge.tail - 1] = M[edge.head - 1] + edge.weight
+                    paths[edge.tail - 1] = paths[edge.head - 1] + [edge.tail]
+                    print(f'Updated node {edge.head} to {M[edge.head - 1]}')
 
-    
-
+        # Check for negative weight cycles
+        for edge in self.graph.edges:
+            if M[edge.head - 1] + edge.weight < M[edge.tail - 1]:
+                raise Exception('Graph contains a negative weight cycle. Cannot find shortest paths.')
         
+        # Reverse each path's order in paths
+        for i in range(len(paths)):
+            paths[i] = paths[i][::-1]
+
+        return M, paths
 
 class Graph:
     def __init__(self, V, E, edges_raw):
@@ -38,10 +41,17 @@ class Graph:
         
         for edge in edges_raw:
             edge_components = edge.split(' ')
-            print(edge_components)
+            # print(edge_components)
             self.edges.append(Edge(tail = int(edge_components[0]), head = int(edge_components[1]), weight = int(edge_components[2])))
 
-
+    def checkValues(self):
+        for edge in self.edges:
+            print('')
+            print('checking values...')
+            print('edge.tail: ', edge.tail)
+            print('edge.head: ', edge.head)
+            print('edge.weight: ', edge.weight)
+            print('types: ', type(edge.tail), type(edge.head), type(edge.weight))
 
 class Edge:
     def __init__(self, tail, head, weight):
@@ -52,12 +62,17 @@ class Edge:
 
 def main():
 
-    filename = input("Enter the file name: ")
+    while True:
+        print('')
+        try:
+            filename = input("Enter the file name: ")
+            with open(filename, 'r') as file:
+                file_contents = file.read()
+            break
+        except FileNotFoundError:
+            print("File not found. Please enter a valid file name.")
 
-    with open(filename, 'r') as file:
-        file_contents = file.read()
-
-
+    print('')
     file_lines = file_contents.split('\n')
     V = file_lines[0].split(' ')[0]
     E = file_lines[0].split(' ')[1]
@@ -80,11 +95,27 @@ def main():
         except ValueError:
             print("Invalid input. Please enter an integer.")
 
-    bellmanFord = BellmanFord(graph=graph)
-    M, successor = bellmanFord.shortestPaths(source=source, sink=sink)
+    # graph.checkValues()
 
-    print(M)
-    print(successor)
+    print('')
+    print('Graph edges:')
+    for edge in graph.edges:
+        print(edge.tail, edge.head, edge.weight)
+
+    print('')
+
+    bellmanFord = BellmanFord(graph=graph)
+    M, paths = bellmanFord.shortestPaths(sink=sink, source=source)
+
+    print('')
+    print('Shortest path weights:')
+    for i in range(graph.V):
+        print(f'Node {i + 1}: {M[i]}')
+
+    print('')
+    print('Shortest paths:')
+    for i in range(graph.V):
+        print(f'Node {i + 1}: {paths[i]}')
 
 
 
