@@ -1,11 +1,12 @@
 
 # Main program for ECE:5330 homework four, Jake Kitzmann
 
+# Class for Bellman-Ford algorithm
 class BellmanFord:
     def __init__(self, graph):
         self.graph = graph
 
-    def shortestPaths(self, sink, source):
+    def shortestPaths(self, sink):
         M = [float("Inf")] * self.graph.V
         M[sink - 1] = 0
 
@@ -13,12 +14,12 @@ class BellmanFord:
         paths[sink - 1] = [sink]
 
         print('Running Shortest Paths...')
-        # shortest paths for each node stored in M
+        # shortest paths for each node to sink node
         for _ in range(1, self.graph.V - 1):
             for edge in self.graph.edges:
                 if M[edge.head - 1] != float("Inf") and M[edge.head - 1] + edge.weight < M[edge.tail - 1]:
-                    M[edge.tail - 1] = M[edge.head - 1] + edge.weight
-                    paths[edge.tail - 1] = paths[edge.head - 1] + [edge.tail]
+                    M[edge.tail - 1] = M[edge.head - 1] + edge.weight # store the weight
+                    paths[edge.tail - 1] = paths[edge.head - 1] + [edge.tail] # store the path
                     print(f'Updated node {edge.head} to {M[edge.head - 1]}')
 
         # Check for negative weight cycles
@@ -26,7 +27,7 @@ class BellmanFord:
             if M[edge.head - 1] + edge.weight < M[edge.tail - 1]:
                 raise Exception('Graph contains a negative weight cycle. Cannot find shortest paths.')
         
-        # Reverse each path's order in paths
+        # Reverse each path's order in paths (list is calculated backwards)
         for i in range(len(paths)):
             paths[i] = paths[i][::-1]
 
@@ -81,6 +82,7 @@ def main():
 
     graph = Graph(V=V, E=E, edges_raw=edges_raw)
 
+    # PART A
     while True:
         try:
             source = int(input("Input source node: "))
@@ -105,7 +107,7 @@ def main():
     print('')
 
     bellmanFord = BellmanFord(graph=graph)
-    M, paths = bellmanFord.shortestPaths(sink=sink, source=source)
+    M, paths = bellmanFord.shortestPaths(sink=sink)
 
     print('')
     print('Shortest path weights:')
@@ -117,6 +119,15 @@ def main():
     for i in range(graph.V):
         print(f'Node {i + 1}: {paths[i]}')
 
+    # PART B
+    print('')
+    print('Weight of shortest path from source to sink:')
+    print(M[source - 1])
+
+    # PART C
+    print('')
+    print('Shortest path from source to sink:')
+    print(paths[source - 1])
 
 
 if __name__ == "__main__":
